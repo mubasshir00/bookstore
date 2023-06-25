@@ -1,14 +1,16 @@
 package main
 
 import (
+	"bookstore/pkg/config"
+	"bookstore/pkg/routes"
 	"log"
 	"net/http"
+
 	"github.com/gorilla/mux"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"bookstore/pkg/routes"
 )
 
 func main(){
+	config.ConnectDb()
 	r := mux.NewRouter()
 	routes.RegisterBookstoreRoutes(r)
 	http.Handle("/",r)
